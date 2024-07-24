@@ -1,0 +1,25 @@
+FROM python:latest AS builder
+
+WORKDIR /var/www
+
+RUN apt-get update && \
+apt-get install python3-dev -y
+RUN cd /var/www
+RUN python -m pip install Django
+RUN django-admin startproject mysite
+
+WORKDIR /var/www/mysite
+
+FROM python:3.12-slim
+
+RUN apt-get update && \
+apt-get install python3-dev -y && \
+apt-get install gcc -y
+WORKDIR /var/www/mysite
+COPY --from=builder /var/www/mysite .
+RUN pip install uwsgi
+RUN chown -R www-data:www-data /var/www
+
+EXPOSE 8000
+
+CMD [ "uwsgi", "--http:8000", "--module mysite.wsgi" ]
