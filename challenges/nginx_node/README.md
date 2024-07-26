@@ -19,7 +19,7 @@ Suba tudo em um repositório e faça a entrega.
 
 * A linguagem de programação para este desafio é Node/JavaScript.
 
-## Utilizando o multi-stage build para compilar a aplicação e otimizar a imagem
+## Utilizando o docker-compose para buildar varias imagens e suas respectivas dependencias
 
 ## dockerfile nginx 
 
