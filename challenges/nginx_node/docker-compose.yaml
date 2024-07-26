@@ -2,21 +2,30 @@ version: '3'
 
 services:
 
-  app:
+  nginx:
     build: 
-      context: node
-    container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
-    volumes:
-      - ./node:/usr/src/app
+      context: ./nginx
+    container_name: nginx
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s /docker-entrypoint.sh nginx -g 'daemon off;'
     tty: true
     networks:
       - nodenet
     ports:
-      - "3000:3000"
+      - "8080:80"
     depends_on:
       - db
+      - app
 
+  app:
+    build: 
+      context: node
+    container_name: app
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s node index.js
+    tty: true
+    networks:
+      - nodenet
+    depends_on:
+      - db
 
   db:
     image: mysql:5.7
