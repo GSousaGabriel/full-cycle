@@ -1,17 +1,21 @@
+# Iniciando uma imagem base node
 FROM node:alpine
 
+# Definindo pasta de trabalho default
 WORKDIR /usr/src/app
 
+# Definindo versao dockerize
 ENV DOCKERIZE_VERSION=v0.7.0
 
+# Rodando instalacao dockerize
 RUN apk update --no-cache \
     && apk add --no-cache wget openssl \
     && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
     && apk del wget
 
+# Copiando arquivos para executar a isntalacao das dependencias
 COPY . .
 RUN npm install
 
+#expondo a porta para acesso entre containers
 EXPOSE 5000
-
-CMD [ "node", "index.js" ]
