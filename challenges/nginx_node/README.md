@@ -125,6 +125,11 @@ services:
       context: node
     container_name: app
     entrypoint: dockerize -wait tcp://db:3306 -timeout 20s node index.js
+    restart: always
+    tty: true
+    volumes:
+      - ./node:/usr/src/app
+      - /usr/src/app/node_modules
     tty: true
     networks:
       - nodenet
