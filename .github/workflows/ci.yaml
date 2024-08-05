@@ -1,12 +1,28 @@
+#name: ci-golang-workflow
+#on: [push]
+#jobs:
+#  check-application:
+#    runs-on: ubunt-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-go@v2
+#        with:
+#          go-version: 1.18
+#      - run: go test
+#      - run: go run math.go
+
 name: ci-golang-workflow
-on: [push]
+on: 
+  pull_request:
+    branches:
+      - develop
 jobs:
-  check-application:
-    runs-on: ubunt-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-        with:
-          go-version: 1.18
-      - run: go test
-      - run: go run math.go
+ check-application:
+   runs-on: ubunt-latest
+   steps:
+     - uses: actions/checkout@v2
+     - uses: actions/setup-go@v2
+       with:
+         go-version: 1.18
+     - run: go test
+     - run: go run math.go
