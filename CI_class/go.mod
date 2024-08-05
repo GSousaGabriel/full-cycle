@@ -1,3 +1,3 @@
-module main
+module testCi
 
 go 1.18
