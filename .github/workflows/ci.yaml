@@ -27,5 +27,5 @@ jobs:
      - uses: actions/setup-go@v2
        with:
          go-version: ${{ matrix.go }}
-     - run: go test
-     - run: go run math.go
+     - run: go test ./CI_class
+     - run: go run ./CI_class/math.go
