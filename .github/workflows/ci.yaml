@@ -47,4 +47,4 @@ jobs:
        uses: docker/build-push-action@v6
        with:
          push: true
-         tags: GSousaGabriel/full-cycle:latest
+         tags: gabrielggs/full-cycle:latest
