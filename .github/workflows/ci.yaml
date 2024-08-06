@@ -1,12 +1,31 @@
+#name: ci-golang-workflow
+#on: [push]
+#jobs:
+#  check-application:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-go@v2
+#        with:
+#          go-version: 1.18
+#      - run: go test
+#      - run: go run math.go
+
 name: ci-golang-workflow
-on: [push]
+on: 
+  pull_request:
+    branches:
+      - develop
 jobs:
-  check-application:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-        with:
-          go-version: 1.18
-      - run:  go test ./CI_class
-      - run:  go run ./CI_class/math.go
+ check-application:
+   runs-on: ubuntu-latest
+   strategy:
+    matrix:
+      go: ['1.17', '1.18']
+   steps:
+     - uses: actions/checkout@v2
+     - uses: actions/setup-go@v2
+       with:
+         go-version: ${{ matrix.go }}
+     - run: go test ./CI_class
+     - run: go run ./CI_class/math.go
