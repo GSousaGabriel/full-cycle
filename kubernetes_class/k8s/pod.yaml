@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: "goserver"
+  labels:
+    app: "goserver"
+spec:
+  containers:
+    - name: "goserver"
+      image: "gabrielggs/hellogo:latest"
