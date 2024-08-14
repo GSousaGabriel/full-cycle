@@ -5,7 +5,7 @@ metadata:
   labels:
     app: "goserver"
 spec:
-  selector: 
+  selector:
     matchLabels:
       app: "goserver"
   replicas: 2
@@ -16,4 +16,38 @@ spec:
     spec:
       containers:
         - name: "goserver"
-          image: "gabrielggs/hellogo:v2"
+          image: "gabrielggs/hellogo:v6"
+          envFrom:
+            - configMapRef:
+                name: "goserver-env"
+            - secretRef:
+                name: goserver-secret
+
+          volumeMounts:
+            - mountPath: "/go/myfamily"
+              name: config
+          # env:
+          #   - name: NAME
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: "goserver-env"
+          #         key: NAME
+          #   - name: AGE
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: "goserver-env"
+          #         key: AGE
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      volumes:
+        - name: config
+          configMap:
+            name: goserver-family
+            items:
+            - key: members
+              path: "family.txt"
