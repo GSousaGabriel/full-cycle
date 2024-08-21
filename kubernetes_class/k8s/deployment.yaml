@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: "goserver"
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,8 +16,16 @@ spec:
     spec:
       containers:
         - name: "goserver"
-          image: "gabrielggs/hellogo:v6.4"
-
+          image: "gabrielggs/hellogo:v6.8"
+          
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "0.06"
+            limits:
+              memory: "556Mi"
+              cpu: "0.06"
+              
           startupProbe:
             httpGet:
               path: /healthz
@@ -62,13 +70,6 @@ spec:
           #       configMapKeyRef:
           #         name: "goserver-env"
           #         key: AGE
-          resources:
-            requests:
-              memory: "128Mi"
-              cpu: "250m"
-            limits:
-              memory: "256Mi"
-              cpu: "500m"
       volumes:
         - name: config
           configMap:
