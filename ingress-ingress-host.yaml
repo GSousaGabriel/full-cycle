@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx"},"labels":{"name":"ingress-host"},"name":"ingress-host","namespace":"default"},"spec":{"rules":[{"host":"ingress2.fullcycle.com.br","http":{"paths":[{"backend":{"service":{"name":"goserver","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+    kubernetes.io/ingress.class: nginx
+  creationTimestamp: "2024-08-28T21:28:16Z"
+  generation: 3
+  labels:
+    name: ingress-host
+  name: ingress-host
+  namespace: default
+  resourceVersion: "92064"
+  uid: d92ac55f-24f5-49da-a629-4784a95c4a89
+spec:
+  rules:
+  - host: ingress.fullcycle.com.br
+    http:
+      paths:
+      - backend:
+          service:
+            name: goserver
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.20.0.5

@@ -59,6 +59,9 @@ spec:
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: config
+              readOnly: true
+            - mountPath: "/go/pvc"
+              name: goserver-volumepvc
           # env:
           #   - name: NAME
           #     valueFrom:
@@ -71,6 +74,9 @@ spec:
           #         name: "goserver-env"
           #         key: AGE
       volumes:
+        - name: goserver-volumepvc
+          persistentVolumeClaim:
+            claimName: goserver-pvc
         - name: config
           configMap:
             name: goserver-family
