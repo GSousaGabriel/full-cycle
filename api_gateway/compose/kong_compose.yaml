@@ -38,7 +38,7 @@ services:
   ### armazenamento das configuracoes do Kong
   ###
   kong-migration-bootstrap:
-    image: gabrielggs/kong-fc
+    image: claudioed/kong-fc
     deploy:
       restart_policy:
         condition: on-failure
@@ -59,7 +59,7 @@ services:
   ### armazenamento das configuracoes do Kong
   ###
   kong-migration-up:
-    image: gabrielggs/kong-fc
+    image: claudioed/kong-fc
     networks:
       - kong-fc
     deploy:
@@ -80,7 +80,7 @@ services:
   ###
   kong:
     container_name: kong
-    image: gabrielggs/kong-fc
+    image: claudioed/kong-fc
     networks:
       - kong-fc
     deploy:
@@ -118,7 +118,7 @@ services:
   ### Microservico com implementacao ficticia simulando usuarios
   ###
   players:
-    image: gabrielggs/players
+    image: claudioed/players
     networks:
       - kong-fc
     deploy:
@@ -130,7 +130,7 @@ services:
   ### Microservico com implementacao ficticia simulando torneios
   ###
   championships:
-    image: gabrielggs/championships
+    image: claudioed/championships
     networks:
       - kong-fc
     deploy:
@@ -142,7 +142,7 @@ services:
   ### Microservico com implementacao ficticia simulando jogos
   ###
   matches:
-    image: gabrielggs/matches
+    image: claudioed/matches
     networks:
       - kong-fc
     deploy:
@@ -154,7 +154,7 @@ services:
   ### Microservico com implementacao ficticia simulando apostas
   ###
   bets:
-    image: gabrielggs/bets
+    image: claudioed/bets
     networks:
       - kong-fc
     deploy:
