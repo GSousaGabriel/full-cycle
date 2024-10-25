@@ -71,7 +71,7 @@ name: CD Gitops
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
