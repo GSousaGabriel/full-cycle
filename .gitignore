@@ -11,3 +11,6 @@
 **/app/*.pyc
 **/app/__pycache__
 **/elasticsearch_data/
+**/.terraform
+**/.terraform.lock.hcl
+**/terraform.tfstate.backup
