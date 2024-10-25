@@ -91,3 +91,27 @@ jobs:
           repository: ${{secrets.DOCKERHUB_USERNAME}}/full-cycle
           tags: ${{github.sha}}, latest
           path: ./git_ops
+
+      - name: Setup kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize-version: "3.6.1"
+
+      - name: Update kubernetes resources
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+        run: 
+          cd k8s
+          kustomize edit set image goserver=$DOCKER_USERNAME/full-cycle:$GITHUB_SHA
+
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Bump docker version"
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: GSousaGabriel/full-cycle
