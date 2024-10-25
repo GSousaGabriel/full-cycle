@@ -90,4 +90,4 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
           repository: ${{secrets.DOCKERHUB_USERNAME}}/full-cycle/git_ops
           tags: ${{github.sha}}, latest
-          context: ./git_ops
+          path: ./git_ops
