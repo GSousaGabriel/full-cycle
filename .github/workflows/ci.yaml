@@ -73,7 +73,7 @@ on:
     branches:
       - develop
     paths:
-      - gitOps/**
+      - git_ops/**
       - .github/**
 
 jobs:
@@ -90,3 +90,4 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
           repository: ${{secrets.DOCKERHUB_USERNAME}}/full-cycle/git_ops
           tags: ${{github.sha}}, latest
+          context: ./git_ops
