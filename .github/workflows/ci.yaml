@@ -72,6 +72,8 @@ on:
   push:
     branches:
       - develop
+    paths:
+      - gitOps/**
 
 jobs:
   build:
@@ -85,5 +87,5 @@ jobs:
         with:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
-          repository: ${{secrets.DOCKERHUB_USERNAME}}/full-cycle/gitOps
+          repository: ${{secrets.DOCKERHUB_USERNAME}}/full-cycle
           tags: ${{github.sha}}, latest
