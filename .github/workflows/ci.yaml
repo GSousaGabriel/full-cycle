@@ -84,7 +84,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Build and push image to Dockerhub
-        uses: actions/build-push-action@v1.1.0
+        uses: docker/build-push-action@v1.1.0
         with:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
