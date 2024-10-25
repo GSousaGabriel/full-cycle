@@ -100,7 +100,7 @@ jobs:
       - name: Update kubernetes resources
         env:
           DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
-        run: 
+        run: |
           cd k8s
           kustomize edit set image goserver=$DOCKER_USERNAME/full-cycle:$GITHUB_SHA
 
