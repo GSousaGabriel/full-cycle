@@ -101,7 +101,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
         run: |
-          cd k8s
+          cd ./git_ops/k8s
           kustomize edit set image goserver=$DOCKER_USERNAME/full-cycle:$GITHUB_SHA
 
       - name: Commit
