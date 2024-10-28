@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - deployment.yaml
-  - service.yaml
+- deployment.yaml
+- service.yaml
 
 images:
-  - name: goserver
-    newName: gabrielggs/gitopsfullcycle
-    newTag: sha
+- name: goserver
+  newName: gabrielggs/full-cycle
+  newTag: a706ecb714fec026c21e4428aea147e33bfacda6
