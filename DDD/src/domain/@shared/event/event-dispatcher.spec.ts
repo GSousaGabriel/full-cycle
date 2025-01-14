@@ -1,6 +1,7 @@
 import SendEmailWhenProductIsCreatedHandler from "../../product/event/handler/send-email-when-product-is-created.handler";
 import ProductCreatedEvent from "../../product/event/product-created.event";
 import EventDispatcher from "./event-dispatcher";
+import { vi } from "vitest";
 
 describe("Domain events tests", () => {
   test("should register an event handler", () => {
@@ -60,7 +61,7 @@ describe("Domain events tests", () => {
   test("should notify all event handlers", () => {
     const eventDispatcher = new EventDispatcher();
     const eventHandler = new SendEmailWhenProductIsCreatedHandler();
-    const spyEventHandler = jest.spyOn(eventHandler, "handle");
+    const spyEventHandler = vi.spyOn(eventHandler, "handle");
 
     eventDispatcher.register("ProductCreatedEvent", eventHandler);
 

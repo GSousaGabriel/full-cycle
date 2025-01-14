@@ -25,6 +25,26 @@ export default class OrderRepository {
   }
 
   async update(entity: Order): Promise<void> {
+    for (const item of entity.items) {
+      const itemExist = await OrderItemModel.findOne({ where: { id: item.id } });
+
+      if (itemExist) {
+        await OrderItemModel.update(
+          {
+            name: item.name,
+            price: item.price,
+            product_id: item.productId,
+            quantity: item.quantity,
+          },
+          {
+            where: {
+              id: item.id,
+            },
+          }
+        );
+      }
+    }
+
     await OrderModel.update(
       {
         id: entity.id,
@@ -41,7 +61,7 @@ export default class OrderRepository {
       {
         where: {
           id: entity.id,
-        }
+        },
       }
     );
   }
@@ -53,6 +73,7 @@ export default class OrderRepository {
         where: {
           id,
         },
+        include: ["items"],
         rejectOnEmpty: true,
       });
     } catch (error) {
@@ -73,7 +94,7 @@ export default class OrderRepository {
   }
 
   async findAll(): Promise<Order[]> {
-    const orderModels = await OrderModel.findAll();
+    const orderModels = await OrderModel.findAll({ include: ["items"] });
 
     const orders = orderModels.map((orderModel) => {
       const orderItems = orderModel.items.map((item) => {
