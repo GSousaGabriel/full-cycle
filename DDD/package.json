@@ -12,8 +12,7 @@
     "vitest": "^2.0.4"
   },
   "scripts": {
-    "test": "npm run tsc -- --noEmit && jest",
-    "tsc": "tsc"
+    "test": "npx vitest"
   },
   "dependencies": {
     "@types/jest": "^29.5.14",
