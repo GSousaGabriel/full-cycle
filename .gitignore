@@ -15,3 +15,4 @@
 **/.terraform.lock.hcl
 **/terraform.tfstate.backup
 **/*.pem
+**/html
