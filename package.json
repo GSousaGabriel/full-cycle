@@ -9,11 +9,16 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/express-session": "^1.18.1",
     "cz-conventional-changelog": "^3.3.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "express-session": "^1.18.1"
   }
 }

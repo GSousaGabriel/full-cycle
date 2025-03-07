@@ -7,7 +7,7 @@ services:
     tty: true
     restart: always
     ports:
-      - "33600:3306"
+      - "3306:3306"
     environment:
       - MYSQL_DATABASE=fullcycle
       - MYSQL_ROOT_PASSWORD=root
