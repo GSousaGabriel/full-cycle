@@ -1,3 +1,13 @@
 {
-    "ansible.python.interpreterPath": "/usr/bin/python3"
+    "ansible.python.interpreterPath": "/usr/bin/python3",
+    "python.testing.pytestArgs": [
+        "practical-project"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.analysis.extraPaths": [
+        "./practical-project/backend",
+        "./practical-project/backend"
+    ],
+    "python.analysis.autoSearchPaths": false
 }
